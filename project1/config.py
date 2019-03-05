@@ -9,14 +9,14 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG=True
     ENV = 'development'
-    DATABASE_URI = 'books_db'
+    DATABASE_URI ='postgres://localhost/books_db'
     TESTING = False
 
 
 class TestingConfig(Config):
     DEBUG=True
     ENV = 'testing'
-    DATABASE_URI= 'test_db'
+    DATABASE_URI= 'postgres://localhost/test_db'
     TESTING = True
 
 class ProductionConfig(Config):
