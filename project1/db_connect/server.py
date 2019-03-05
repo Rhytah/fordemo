@@ -1,5 +1,5 @@
 import psycopg2 
-from config import app_configuration
+# from project1.config import app_configuration
 from psycopg2.extras import RealDictCursor
 from .relation_commands import sqlcommands
 import os
