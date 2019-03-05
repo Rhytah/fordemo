@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}">
+
+</head>
+<body>
+    <div class="input-field col s3">
+        <input id="search" type="text" class="validate" placeholder="search">
+        
+      </div>
+
+
+  <img src="{{ url_for('static', filename='img/book.jpg') }}" style="background-color: aqua;">
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md nav-dark by-steel fixed-top">
+            <div class="container">
+                <a class="navbar-brand mr-4" href="/">Welcome to our books site</a>
+                <button class="navbar-toggler" type="button" data-toggle ="collapse" data-target
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id ="navbarToggle">
+                    <div class="navbar-nav mr-auto">
+                        <a class="nav-item nav-link" href="{{url_for('home')}}}">Home</a>
+                        </div>
+
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="{{url_for('login')}}">Login</a>
+                            <a class="nav-item nav-link" href="{{url_for('register')}}">Register</a>
+                            
+                            
+                            
+                            </div>
+                            </div>
+                            </div>
+                            
+        </nav>
+        
+
+    </header>
+    <div class="container">
+        {% block content %} {% endblock %}
+
+    </div>
+    
+</body>
+</html>
