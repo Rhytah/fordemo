@@ -8,6 +8,7 @@ from form import RegistrationForm, LoginForm
 
 app = Flask(__name__)
 
+
 # Check for environment variable
 if not os.getenv("DATABASE_URL"):
     raise RuntimeError("DATABASE_URL is not set")
@@ -36,8 +37,7 @@ def register():
 		hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
 		db.execute("INSERT INTO users(username, email, password) VALUES(:username, :email, :password)",{"username":form.username.data, "email":form.email.data, "password":hashed_password})
 		db.commit()
-		
-		return redirect(url_for('login'))
+		return redirect(url_for('login.html'))
 	return render_template('register.html', form=form)
 
 

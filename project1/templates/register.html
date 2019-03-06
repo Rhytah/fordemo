@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+    {% extends 'layout.html' %}
+    {% block content %}
+    {% block title %}
+      Welcome
+    {% endblock %} 
+    {% block style %}
+    
+    
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
-  
 
+
+  {% endblock %}
+ 
   <style>
     body{
       background-color: aqua;
@@ -27,7 +29,7 @@
     
     <div id="id01" class="modal style='background-color:aqua;'>
       
-      <form class="modal-content animate" action="/action_page.php">
+      <form class="modal-content animate," action="/action_page.php">
         <div class="imgcontainer">
           <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
          
@@ -74,5 +76,4 @@
 
 
     
-</body>
-</html>
+{% endblock %}
