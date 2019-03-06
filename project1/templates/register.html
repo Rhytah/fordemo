@@ -1,28 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+    {% extends 'layout.html' %}
+    {% block content %}
+    {% block title %}
+      Welcome
+    {% endblock %} 
+    {% block style %}
+    
+    
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}">
 
-</head>
-<body>
-    <h2>registration Form</h2>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+  {% endblock %}
+ 
+  <style>
+    body{
+      background-color: aqua;
+      background-image: url('book.jpg')
+    }
+    
+    </style>
+    <!-- <h2>registration Form</h2> -->
 
     <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Register</button>
     
-    <div id="id01" class="modal">
+    <div id="id01" class="modal style='background-color:aqua;'>
       
-      <form class="modal-content animate" action="/action_page.php">
+      <form class="modal-content animate," action="/action_page.php">
         <div class="imgcontainer">
           <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-          <img src="img_avatar2.png" alt="Avatar" class="avatar">
+         
         </div>
     
         <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
           <label for="uname"><b>Email</b></label>
           <input type="text" placeholder="Enter Username" name="uname" required>
     
@@ -33,7 +49,7 @@
           <input type="password" placeholder="Enter Password" name="psw" required>
 
 
-          <button type="submit">Register</button>
+          <button type="submit">Submit</button>
           <label>
             <input type="checkbox" checked="checked" name="remember"> By creating an account, you agree to our terms and conditions
           </label>
@@ -46,7 +62,7 @@
       </form>
     </div>
     
-    <script>
+    <!-- <script>
     // Get the modal
     var modal = document.getElementById('id01');
     
@@ -56,9 +72,8 @@
             modal.style.display = "none";
         }
     }
-    </script>
+    </script> -->
 
 
     
-</body>
-</html>
+{% endblock %}
