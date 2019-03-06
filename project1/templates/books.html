@@ -2,25 +2,36 @@
 <html>
 
 <title>Books|Goodreads</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/books.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
 <body>
+<nav >
+  <div class="nav-wrapper deep-purple darken-4">
+    <a href="{{url_for ('index') }}" class="brand-logo">ReadIt</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="">Search</a></li>
+      <li><a href="index.html">Logout</a></li>
+      <!-- Dropdown Trigger -->
+    </ul>
+  </div>
+</nav>
 
 <h1> Welcome {{session.username}}</h1>
-<table>
-<tr>
-<th scope="col">Author</th>
-<th scope="col">ISBN</th>
-<th scope="col">Title</th>
-<th scope="col">Year</th>
-</tr>
-{% for book in books %}
-<tr>
-<td scope="row" data-label="AUTHOR">{{book.author}}</td>
-<td scope="row" data-label="ISBN">{{book.isbn}}</td>
-<td scope="row" data-label="TITLE">{{book.title}}</td>
-<td scope="row" data-label="YEAR">{{book.year}}</td>
-</tr>
+
+
+                    {% for book in books %}
+
+  <ul class="collection">
+    <li class="collection-item avatar">
+      <img src="{{ url_for('static', filename='images/nicole-honeywill-704526-unsplash.jpg') }}" alt="" class="circle">
+      <span class="title">{{book.title}}</span>
+      <p>{{book.author}} <br>
+      {{book.year}}<br>
+       </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">{{book.isbn}}</i></a>
+    </li>
 {% endfor %}
+
+
 </body>
 </html>
-
