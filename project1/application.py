@@ -1,7 +1,7 @@
 import os
 
 
-from flask import Flask, render_template, url_for, redirect,session,jsonify,json
+from flask import Flask, render_template, url_for, redirect,session,jsonify,json,flash
 from form import RegistrationForm, LoginForm 
 import requests
 from flask_session import Session
@@ -34,7 +34,7 @@ def register():
 	if form.validate_on_submit():
 		hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
 		db.execute("INSERT INTO users(username, email, password) VALUES(:username, :email, :password)",{"username":form.username.data, "email":form.email.data, "password":hashed_password})
-		db.commit()
+		# db.commit()
 		return redirect(url_for('login.html'))
 	return render_template('register.html', form=form)
 
