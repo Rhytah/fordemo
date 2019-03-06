@@ -2,7 +2,7 @@ sqlcommands = (
                               
                 """
                 CREATE TABLE IF NOT EXISTS users(
-                    userid SERIAL ,
+                    userid SERIAL,
                     username VARCHAR (30)PRIMARY KEY,
                     password VARCHAR (10),
                     email VARCHAR (30)
@@ -10,7 +10,7 @@ sqlcommands = (
                 """,
                 """
                 CREATE TABLE IF NOT EXISTS books(
-                    isbn VARCHAR PRIMARY KEY,
+                    isbn VARCHAR UNIQUE,
                     title VARCHAR,
                     author VARCHAR,
                     year BIGINT

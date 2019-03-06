@@ -1,9 +1,14 @@
 import os
 
 
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect,session,jsonify,json
 from form import RegistrationForm, LoginForm 
 from bcrypt import Bcrypt
+import requests
+from flask_session import Session
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+from db_connect.server import DatabaseConnect
 
 
 app = Flask(__name__)
@@ -57,14 +62,36 @@ Session(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
+@app.route("/")
+def index():
+    return render_template('index.html')
 
+@app.route("/books")
+def show_books():
+    cmd="SELECT * FROM books ORDER BY isbn OFFSET 10 ROWS FETCH NEXT 10 ROWS ONLY"
+    
+    result=db.execute(cmd)
+    if result:
+        return render_template('books.html', books= result)
+    return jsonify({"message":"Resource not found"})
 
-@app.route('/query', methods=['POST', 'GET'])
-def query():
-	form = SearchForm()
-	if form.validate_on_submit():
-		params = {
-			'api_key':'{API_KEY}',}
-		r = requests.get('https://www.goodreads.com/book/review_counts.json',{'params':params, 'isbns':form.isbns.data})
-		return render_template('results.html', results=json.loads(r.text)['books'])
-	return render_template('search.html', form=form)
+@app.route("/books/<isbn>")
+def show_specific_books(isbn):
+    cmd=f"SELECT * FROM books WHERE isbn ='{isbn}' "
+    
+    result=db.execute(cmd)
+    if result:
+        return render_template('books.html', books= result)
+    return jsonify({"message":"Resource not found"})
+    # res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key":"vF7Z3t3lTDbuqMCOAuI0ZQ", "isbns": f"{isbn}"})
+    # return jsonify({"book": res.json()})
+    
+@app.route("/books/search/<search>")
+def search_books(search):
+    query= f"SELECT * FROM books WHERE isbn LIKE ('%{search}%') OR title LIKE ('%{search}%')  OR author LIKE ('%{search}%')"
+    result=db.execute(query)
+    return render_template('books.html', books=result)
+
+if __name__ == '__main__':
+    app.run(debug=True, port =5000)
+    # db = DatabaseConnect()
