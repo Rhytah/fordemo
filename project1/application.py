@@ -53,7 +53,11 @@ def show_specific_books(isbn):
     # res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key":"vF7Z3t3lTDbuqMCOAuI0ZQ", "isbns": f"{isbn}"})
     # return jsonify({"book": res.json()})
     
-    
+@app.route("/books/search/<search>")
+def search_books(search):
+    query= f"SELECT * FROM books WHERE isbn LIKE ('%{search}%') OR title LIKE ('%{search}%')  OR author LIKE ('%{search}%')"
+    result=db.execute(query)
+    return render_template('books.html', books=result)
 
 if __name__ == '__main__':
     app.run(debug=True, port =5000)
