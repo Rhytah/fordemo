@@ -2,7 +2,7 @@
 import os, psycopg2, csv
 
 
-DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = os.environ['']
 ']
 conn = psycopg2.connect(host="ec2-54-204-2-25.compute-1.amazonaws.com",database="de4ddh75282quq", user="qveeiishhqryyg"
 , password="609b9db3f2b326518943a8ce73b4fa0cc1ee1091bd6d47c4e18c1758853e4f7a")
