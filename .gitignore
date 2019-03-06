@@ -1,4 +1,5 @@
 venv
-flask_session
+flask_venv
 .vscode
-__pycache__
+\flask_session
+\__pycache__
