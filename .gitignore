@@ -1,3 +1,4 @@
 flask_venv
 .vscode
 /flask_session
+/__pycache__

@@ -6,6 +6,9 @@ from form import RegistrationForm, LoginForm
 
 
 
+
+ 
+
 app = Flask(__name__)
 
 
