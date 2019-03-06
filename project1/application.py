@@ -1,6 +1,7 @@
 import os
 
-from flask import Flask, session,jsonify
+from flask import Flask, session,jsonify,render_template,json
+import requests 
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -37,10 +38,21 @@ def show_books():
     cmd="SELECT * FROM books ORDER BY isbn OFFSET 10 ROWS FETCH NEXT 10 ROWS ONLY"
     
     result=db.execute(cmd)
-    
     if result:
-        return jsonify({"Books":[dict(books) for books in result]})
+        return render_template('books.html', books= result)
     return jsonify({"message":"Resource not found"})
+
+@app.route("/books/<isbn>")
+def show_specific_books(isbn):
+    cmd=f"SELECT * FROM books WHERE isbn ='{isbn}' "
+    
+    result=db.execute(cmd)
+    if result:
+        return render_template('books.html', books= result)
+    return jsonify({"message":"Resource not found"})
+    # res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key":"vF7Z3t3lTDbuqMCOAuI0ZQ", "isbns": f"{isbn}"})
+    # return jsonify({"book": res.json()})
+    
     
 
 if __name__ == '__main__':
