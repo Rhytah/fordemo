@@ -3,16 +3,15 @@ import os
 
 from flask import Flask, render_template, url_for, redirect,session,jsonify,json
 from form import RegistrationForm, LoginForm 
-from bcrypt import Bcrypt
 import requests
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from db_connect.server import DatabaseConnect
-
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-
+bcrypt = Bcrypt(app)
 
 
 # Check for environment variable
@@ -22,12 +21,11 @@ if not os.getenv("DATABASE_URL"):
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-app.config["SECRET_KEY"]=('066459a30b9c2d387ba0')
-app.config["API_KEY"] = os.environ.get('API_KEY')
+# app.config["SECRET_KEY"]=os.getenv('')
 
 @app.route('/')
-def home():
-	return render_template('home.html')
+def index():
+	return render_template('index.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -62,9 +60,7 @@ Session(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
-@app.route("/")
-def index():
-    return render_template('index.html')
+
 
 @app.route("/books")
 def show_books():
