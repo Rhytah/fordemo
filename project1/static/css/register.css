@@ -1,0 +1,7 @@
+.bg-img{
+    background-image: url("images/nicole-honeywill-704526-unsplash.jpg"); 
+    background-repeat:no-repeat;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}

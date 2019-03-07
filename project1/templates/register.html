@@ -1,43 +1,30 @@
+{% extends "login.html"%}
+{% block content%}
+<div class="row" style="padding:6px;margin:200px 400px;">
+<form class="col s12" method='post'>
+<div class="row">
+{{form.username.label}}
 
-    {% extends 'books.html' %}
-    {% block content %}
-    {% block title %}
-      Welcome
-    {% endblock %} 
-    {% block style %}
-    
-    
+{{form.username}}
+</div>
+<div>
+{{form.email.label}}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}">
+{{form.email}}
+</div>
+<div>
+{{form.password.label}}
 
+{{form.password}}
+</div>
+<div>
+{{form.confirm_password.label}}
 
-
-  {% endblock %}
+{{form.confirm_password}}
+</div>
+<div>
+{{form.submit}}
+</form>
+</div>
+ {% endblock %} 
  
-    <!-- <h2>registration Form</h2> -->
-    <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="User Name" type="text" class="validate" placeholder="User Name">
-         
-        </div>
-       
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input  id="Email" type="text" class="validate" plcaholder="Email">
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate" placeholder="Password">
-          
-        </div>
-      </div>
-      
-     
-    </form>
-  </div>
-{% endblock %}
-

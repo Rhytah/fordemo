@@ -36,10 +36,9 @@
       <p>{{book.author}} <br>
       {{book.year}}<br>
        </p>
-       <br>
-       {{book.isbn}}
-      <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+      <a href="#!" class="secondary-content"><i class="material-icons">{{book.isbn}}</i></a>
     </li>
+    
 {% endfor %}
 {% block content %} {% endblock %}
 
