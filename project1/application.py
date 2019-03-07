@@ -2,7 +2,7 @@ import os
 
 
 from flask import Flask, render_template, url_for, redirect,session,jsonify,json,flash,request
-from project1.form import RegistrationForm, LoginForm 
+from project1.form import RegistrationForm, LoginForm, SearchForm, ReviewForm
 import requests
 from flask_session import Session
 from sqlalchemy import create_engine
@@ -87,11 +87,11 @@ def show_specific_books(isbn):
     
 @app.route("/books/search/<search>")
 def search_books(search):
-    search = input()
-    query= f"SELECT * FROM books WHERE isbn LIKE ('%{search}%') OR title LIKE ('%{search}%')  OR author LIKE ('%{search}%')"
+    form = SearchForm()
+    query= f"SELECT * FROM books WHERE isbn LIKE ('%{form.search}%') OR title LIKE ('%{form.search}%')  OR author LIKE ('%{search}%')"
     result=db.execute(query)
     return render_template('single_book.html', books=result)
-    print(books)
+    
 
 if __name__ == '__main__':
     app.run(debug=True, port =5000)

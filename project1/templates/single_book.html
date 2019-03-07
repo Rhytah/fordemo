@@ -29,7 +29,7 @@
 
                     {% for book in books %}
 
-  <ul class="collection">
+  <ul class="collection" style="margin:100px; box-sizing:border-box;">
     <li class="collection-item avatar">
       <img src="{{ url_for('static', filename='images/nicole-honeywill-704526-unsplash.jpg') }}" alt="" class="circle">
       <span class="title">{{book.title}}</span>
@@ -38,7 +38,10 @@
        </p>
       <a href="#!" class="secondary-content"><i class="material-icons">{{book.isbn}}</i></a>
     </li>
-    
+    <button> Add a review</button>
+    <div id="ad-review">
+    <textarea>
+    </textarea>
 {% endfor %}
 {% block content %} {% endblock %}
 
